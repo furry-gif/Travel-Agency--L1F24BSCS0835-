@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelers - Home</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary-color: #f85a59;
+            --text-color: #707b8e;
+            --heading-color: #000000;
+            --bg-light: #f9f9ff;
+            --footer-bg: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border: 1px solid var(--primary-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--heading-color);
+            text-transform: capitalize;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        /* --- TOP FEATURES (OVERLAPPING HERO) --- */
+        .top-features {
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 80px;
+        }
+
+        .features-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            flex: 1;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        /* --- SERVICES (ICONS) --- */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+
+        .service-text h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-text p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .service-text a {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* --- TESTIMONIAL --- */
+        .testimonial-section {
+            background: var(--bg-light);
+            padding: 100px 0;
+        }
+
+        .testi-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .testi-img {
+            width: 50%;
+        }
+
+        .testi-img img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        .testi-content {
+            width: 55%;
+            background: #fff;
+            padding: 60px;
+            position: absolute;
+            right: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .testi-content p {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+        }
+
+        .testi-author {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .testi-nav {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .testi-nav i {
+            cursor: pointer;
+            color: var(--heading-color);
+        }
+
+        /* --- DESTINATIONS --- */
+        .destinations-section {
+            padding: 100px 0;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .dest-card {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .dest-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .dest-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .dest-info {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .dest-price {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .dest-name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* --- VIDEO SECTION --- */
+        .video-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            padding: 150px 0;
+            text-align: center;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #fff;
+            transition: 0.3s;
+        }
+
+        .play-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .video-section h2 {
+            color: #fff;
+            font-size: 36px;
+        }
+
+        /* --- OUR BLOG --- */
+        .blog-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .blog-card {
+            background: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-img {
+            width: 50%;
+            height: 250px;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            width: 50%;
+            padding: 30px;
+        }
+
+        .blog-title {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blog-meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .blog-content p {
+            font-size: 14px;
+        }
+        
+        .blog-center-btn {
+            text-align: center;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--footer-bg);
+            padding: 80px 0 30px;
+            color: #ccc;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .footer-widget h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .footer-widget p {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #222;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .features-grid { flex-direction: column; }
+            .services-grid, .dest-grid { grid-template-columns: repeat(2, 1fr); }
+            .testi-container { flex-direction: column; }
+            .testi-img, .testi-content { width: 100%; position: static; }
+            .testi-content { padding: 30px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 40px; }
+            .services-grid, .dest-grid, .footer-grid { grid-template-columns: 1fr; }
+            .blog-card { flex-direction: column; }
+            .blog-img, .blog-content { width: 100%; }
+            .footer-bottom { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Travelers</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Destination</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Never Stop<br>Exploring</h1>
+            <p>Their sea is gathered the years dominion rule the saying set dont.</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </header>
+
+    <!-- Top Features (Overlapping) -->
+    <section class="top-features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1502307100811-6bdc0981a85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Affordable">
+                    <h3 class="feature-title">Affordable & Comfortable</h3>
+                </div>
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Explore">
+                    <h3 class="feature-title">Explore New Destinations</h3>
+                </div>
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Flights">
+                    <h3 class="feature-title">Best Flight Deals</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section 1 -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                    <div class="service-text">
+                        <h4>Air Ticketing</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi et.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-ship"></i></div>
+                    <div class="service-text">
+                        <h4>Cruises</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi et.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="service-text">
+                        <h4>Tour Packages</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi et.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonials</h2>
+            </div>
+            <div class="testi-container">
+                <div class="testi-img">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traveler">
+                </div>
+                <div class="testi-content">
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus. Nemo maxime, veniam! Fugiat odio nam eveniet ipsum atque, corrupti porro"</p>
+                    <span class="testi-author">— James Martin, Traveler</span>
+                    <div class="testi-nav">
+                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Destinations</h2>
+                <p>Choose Your Next Destination</p>
+            </div>
+            <div class="dest-grid">
+                <!-- Dest 1 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini">
+                    <div class="dest-info">
+                        <span class="dest-price">$500</span>
+                        <h3 class="dest-name">Santorini, Greece</h3>
+                    </div>
+                </div>
+                <!-- Dest 2 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rome">
+                    <div class="dest-info">
+                        <span class="dest-price">$300</span>
+                        <h3 class="dest-name">Rome, Italy</h3>
+                    </div>
+                </div>
+                <!-- Dest 3 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mount Fuji">
+                    <div class="dest-info">
+                        <span class="dest-price">$300</span>
+                        <h3 class="dest-name">Mount Fuji, Japan</h3>
+                    </div>
+                </div>
+                <!-- Dest 4 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dubai">
+                    <div class="dest-info">
+                        <span class="dest-price">$300</span>
+                        <h3 class="dest-name">Camels, Dubai</h3>
+                    </div>
+                </div>
+                <!-- Dest 5 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="London">
+                    <div class="dest-info">
+                        <span class="dest-price">$290</span>
+                        <h3 class="dest-name">Elizabeth Tower, London</h3>
+                    </div>
+                </div>
+                <!-- Dest 6 -->
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Australia">
+                    <div class="dest-info">
+                        <span class="dest-price">$350</span>
+                        <h3 class="dest-name">Opera House, Australia</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
+            <h2>Experience Our<br>Outstanding Services</h2>
+        </div>
+    </section>
+
+    <!-- Services Section 2 -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer these amazing services</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                    <div class="service-text">
+                        <h4>Air Ticketing</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-ship"></i></div>
+                    <div class="service-text">
+                        <h4>Cruises</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="service-text">
+                        <h4>Tour Packages</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-hotel"></i></div>
+                    <div class="service-text">
+                        <h4>Hotel Accommodations</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-umbrella-beach"></i></div>
+                    <div class="service-text">
+                        <h4>Sea Explorations</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-skiing"></i></div>
+                    <div class="service-text">
+                        <h4>Ski Experiences</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Blog</h2>
+                <p>Recent Post from our blog</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 1">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">How To Plan Your Vacation</a>
+                        <p class="blog-meta">By Mark Wiens | Dec 20, 2020</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 2">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">How To Plan Your Vacation</a>
+                        <p class="blog-meta">By Mark Wiens | Dec 20, 2020</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-center-btn">
+                <a href="#" class="btn btn-outline">View All Post</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Want To Travel With Us?</h2>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <h3>About Travelers</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis minima minus odio!</p>
+                </div>
+                <div class="footer-widget">
+                    <h3>Navigations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Destination</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3 style="visibility: hidden;">Navigations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Discounts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Subscribe Newsletter</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit minima minus odio.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter Email">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>Copyright ©2026 All rights reserved | This template is made with <i class="fas fa-heart" style="color:var(--primary-color);"></i> by Colorlib</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
