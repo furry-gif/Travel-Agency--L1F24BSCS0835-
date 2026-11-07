@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelers - Our Blog</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary-color: #f85a59;
+            --text-color: #707b8e;
+            --heading-color: #000000;
+            --bg-light: #f9f9ff;
+            --footer-bg: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--bg-light); /* Light background for blog cards to stand out */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--heading-color);
+            text-transform: capitalize;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--heading-color);
+        }
+
+        /* --- SUBPAGE HERO SECTION --- */
+        .hero-sub {
+            height: 60vh;
+            min-height: 450px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .hero-sub-content h1 {
+            font-size: 48px;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb span {
+            margin: 0 10px;
+            color: #fff;
+        }
+
+        /* --- BLOG GRID SECTION --- */
+        .blog-page-section {
+            padding: 100px 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .blog-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .blog-img {
+            width: 50%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            width: 50%;
+            padding: 30px;
+        }
+
+        .blog-title {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .blog-title:hover {
+            color: var(--heading-color);
+        }
+
+        .blog-meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .blog-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .blog-content p {
+            font-size: 14px;
+        }
+
+        /* --- PAGINATION --- */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+            gap: 10px;
+        }
+
+        .pagination a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            color: var(--text-color);
+            font-weight: 500;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .pagination a.active, .pagination a:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--footer-bg);
+            padding: 80px 0 30px;
+            color: #ccc;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .footer-widget h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .footer-widget p {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #222;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #fff;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- CSS MEDIA QUERIES --- */
+        
+        /* Tablet & Small Desktops */
+        @media (max-width: 991px) {
+            .menu-toggle { display: block; }
+            
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex; 
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .blog-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .hero-sub-content h1 { font-size: 32px; }
+            .blog-card { flex-direction: column; }
+            .blog-img, .blog-content { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Travelers</a>
+            
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Destination.html">Destination</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="discount.html">Discount</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="menu-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Subpage Hero Section -->
+    <header class="hero-sub">
+        <div class="container hero-sub-content">
+            <h1>OUR BLOG</h1>
+            <p class="breadcrumb"><a href="index.html">Home</a> <span>&#8594;</span> Blog</p>
+        </div>
+    </header>
+
+    <!-- Blog Posts Grid Section -->
+    <section class="blog-page-section">
+        <div class="container">
+            <div class="blog-grid">
+                
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 1">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">How To Plan Your Vacation Perfectly</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> Mark Wiens</span>
+                            <span><i class="fas fa-calendar-alt"></i> Dec 20, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 2">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">10 Best Destinations To Visit in 2027</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> Sarah Jones</span>
+                            <span><i class="fas fa-calendar-alt"></i> Nov 15, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 3 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 3">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">A Backpacker's Guide To Europe</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> James Martin</span>
+                            <span><i class="fas fa-calendar-alt"></i> Oct 02, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 4 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 4">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">Tips For Finding Cheap Flight Tickets</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> Anna Smith</span>
+                            <span><i class="fas fa-calendar-alt"></i> Sep 28, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 5 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 5">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">Experiencing The Beauty of Greece</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> Mark Wiens</span>
+                            <span><i class="fas fa-calendar-alt"></i> Sep 10, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+                <!-- Blog Card 6 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 6">
+                    </div>
+                    <div class="blog-content">
+                        <a href="#" class="blog-title">The Ultimate Desert Safari In Dubai</a>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> David Lee</span>
+                            <span><i class="fas fa-calendar-alt"></i> Aug 22, 2026</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#"><i class="fas fa-angle-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fas fa-angle-right"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <h3>About Travelers</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis minima minus odio!</p>
+                </div>
+                <div class="footer-widget">
+                    <h3>Navigations</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="Destination.html">Destination</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3 style="visibility: hidden;">Navigations</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="discount.html">Discounts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h3>Subscribe Newsletter</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit minima minus odio.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter Email" required>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>Copyright ©2026 All rights reserved | This template is made with <i class="fas fa-heart" style="color:var(--primary-color);"></i> by Colorlib</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const toggleIcon = mobileToggle.querySelector('i');
+
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                if (navMenu.classList.contains('active')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-times');
+                } else {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
