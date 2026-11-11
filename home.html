@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelers - Home</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -39,7 +40,6 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
         }
 
         ul {
@@ -63,7 +63,6 @@
             text-transform: uppercase;
             border: 1px solid var(--primary-color);
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .btn:hover {
@@ -99,7 +98,7 @@
         /* --- NAVIGATION --- */
         nav {
             padding: 20px 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -112,6 +111,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -140,6 +140,7 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+            color: var(--heading-color);
         }
 
         /* --- HERO SECTION --- */
@@ -152,6 +153,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            padding-top: 70px;
         }
 
         .hero-content h1 {
@@ -169,7 +171,7 @@
             margin-bottom: 40px;
         }
 
-        /* --- TOP FEATURES (OVERLAPPING HERO) --- */
+        /* --- TOP FEATURES --- */
         .top-features {
             margin-top: -80px;
             position: relative;
@@ -195,11 +197,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .feature-card:hover img {
-            transform: scale(1.1);
         }
 
         .feature-title {
@@ -276,6 +273,7 @@
             width: 100%;
             max-width: 500px;
             height: auto;
+            border-radius: 4px;
         }
 
         .testi-content {
@@ -297,6 +295,7 @@
         .testi-author {
             color: var(--primary-color);
             font-weight: 500;
+            display: block;
         }
 
         .testi-nav {
@@ -308,6 +307,16 @@
         .testi-nav i {
             cursor: pointer;
             color: var(--heading-color);
+            font-size: 18px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+        }
+
+        .testi-nav i:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
         }
 
         /* --- DESTINATIONS --- */
@@ -325,17 +334,13 @@
             position: relative;
             overflow: hidden;
             height: 300px;
+            border-radius: 4px;
         }
 
         .dest-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .dest-card:hover img {
-            transform: scale(1.1);
         }
 
         .dest-card::after {
@@ -387,7 +392,6 @@
             font-size: 30px;
             margin-bottom: 30px;
             border: 2px solid #fff;
-            transition: 0.3s;
         }
 
         .play-btn:hover {
@@ -417,11 +421,15 @@
             background: #fff;
             display: flex;
             align-items: center;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .blog-img {
             width: 50%;
             height: 250px;
+            overflow: hidden;
         }
 
         .blog-img img {
@@ -526,6 +534,10 @@
             cursor: pointer;
         }
 
+        .newsletter-form button:hover {
+            background: #e04847;
+        }
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -545,21 +557,42 @@
             color: var(--primary-color);
         }
 
-        /* Responsive Design */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 991px) {
-            .nav-links { display: none; }
             .menu-toggle { display: block; }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
             .features-grid { flex-direction: column; }
             .services-grid, .dest-grid { grid-template-columns: repeat(2, 1fr); }
             .testi-container { flex-direction: column; }
             .testi-img, .testi-content { width: 100%; position: static; }
-            .testi-content { padding: 30px; } 
+            .testi-content { padding: 30px; margin-top: 20px; }
             .blog-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 40px; }
+            .hero-content h1 { font-size: 38px; }
             .services-grid, .dest-grid, .footer-grid { grid-template-columns: 1fr; }
             .blog-card { flex-direction: column; }
             .blog-img, .blog-content { width: 100%; }
@@ -572,16 +605,16 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <a href="index.html" class="logo">Travelers</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="./Destination.html">Destination</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+            <a href="home.html" class="logo">Travelers</a>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Destination.html">Destination</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="discount.html">Discount</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
+            <div class="menu-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
@@ -596,7 +629,7 @@
         </div>
     </header>
 
-    <!-- Top Features (Overlapping) -->
+    <!-- Top Features -->
     <section class="top-features">
         <div class="container">
             <div class="features-grid">
@@ -656,14 +689,14 @@
             </div>
             <div class="testi-container">
                 <div class="testi-img">
-                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traveler">
+                    <img id="testiImg" src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traveler">
                 </div>
-                <div class="testi-content">
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus. Nemo maxime, veniam! Fugiat odio nam eveniet ipsum atque, corrupti porro"</p>
-                     <span class="testi-author">— James Martin, Traveler</span>
+                <div class="testi-content" id="testiContent">
+                    <p id="testiQuote">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus. Nemo maxime, veniam! Fugiat odio nam eveniet ipsum atque, corrupti porro"</p>
+                    <span class="testi-author" id="testiAuthor">— James Martin, Traveler</span>
                     <div class="testi-nav">
-                        <i class="fas fa-arrow-left"></i>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-left" id="prevTesti"></i>
+                        <i class="fas fa-arrow-right" id="nextTesti"></i>
                     </div>
                 </div>
             </div>
@@ -678,7 +711,6 @@
                 <p>Choose Your Next Destination</p>
             </div>
             <div class="dest-grid">
-                <!-- Dest 1 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini">
                     <div class="dest-info">
@@ -686,7 +718,6 @@
                         <h3 class="dest-name">Santorini, Greece</h3>
                     </div>
                 </div>
-                <!-- Dest 2 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rome">
                     <div class="dest-info">
@@ -694,7 +725,6 @@
                         <h3 class="dest-name">Rome, Italy</h3>
                     </div>
                 </div>
-                <!-- Dest 3 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mount Fuji">
                     <div class="dest-info">
@@ -702,7 +732,6 @@
                         <h3 class="dest-name">Mount Fuji, Japan</h3>
                     </div>
                 </div>
-                <!-- Dest 4 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dubai">
                     <div class="dest-info">
@@ -710,7 +739,6 @@
                         <h3 class="dest-name">Camels, Dubai</h3>
                     </div>
                 </div>
-                <!-- Dest 5 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="London">
                     <div class="dest-info">
@@ -718,7 +746,6 @@
                         <h3 class="dest-name">Elizabeth Tower, London</h3>
                     </div>
                 </div>
-                <!-- Dest 6 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Australia">
                     <div class="dest-info">
@@ -733,7 +760,7 @@
     <!-- Video Section -->
     <section class="video-section">
         <div class="container">
-            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
+            <a href="#" class="play-btn" id="videoPlayBtn"><i class="fas fa-play"></i></a>
             <h2>Experience Our<br>Outstanding Services</h2>
         </div>
     </section>
@@ -811,8 +838,8 @@
                         <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 1">
                     </div>
                     <div class="blog-content">
-                        <a href="#" class="blog-title">How To Plan Your Vacation</a>
-                        <p class="blog-meta">By Mark Wiens | Dec 20, 2020</p>
+                        <a href="blog.html" class="blog-title">How To Plan Your Vacation</a>
+                        <p class="blog-meta">By Mark Wiens | Dec 20, 2026</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
                     </div>
                 </div>
@@ -821,14 +848,14 @@
                         <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog 2">
                     </div>
                     <div class="blog-content">
-                        <a href="#" class="blog-title">How To Plan Your Vacation</a>
-                        <p class="blog-meta">By Mark Wiens | Dec 20, 2020</p>
+                        <a href="blog.html" class="blog-title">How To Plan Your Vacation</a>
+                        <p class="blog-meta">By Mark Wiens | Dec 20, 2026</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione.</p>
                     </div>
                 </div>
             </div>
             <div class="blog-center-btn">
-                <a href="#" class="btn btn-outline">View All Post</a>
+                <a href="blog.html" class="btn btn-outline">View All Post</a>
             </div>
         </div>
     </section>
@@ -847,31 +874,31 @@
             <div class="footer-grid">
                 <div class="footer-widget">
                     <h3>About Travelers</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis minima minus odio!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa?</p>
                 </div>
                 <div class="footer-widget">
                     <h3>Navigations</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Destination</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="Destination.html">Destination</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h3 style="visibility: hidden;">Navigations</h3>
                     <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Discounts</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="discount.html">Discounts</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h3>Subscribe Newsletter</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit minima minus odio.</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Enter Email">
+                        <input type="email" placeholder="Enter Email" required>
                         <button type="submit">Send</button>
                     </form>
                 </div>
@@ -888,5 +915,59 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const toggleIcon = mobileToggle.querySelector('i');
+
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-times');
+                } else {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            });
+
+            // Testimonials Switcher
+            const testimonials = [
+                {
+                    quote: '"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus."',
+                    author: '— James Martin, Traveler',
+                    img: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                {
+                    quote: '"Amazing experience booking our European holiday through Travelers. Everything was handled seamlessly and smoothly from start to finish!"',
+                    author: '— Sarah Jenkins, Adventurer',
+                    img: 'https://images.unsplash.com/photo-1516483638261-f4085ee6e60b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                }
+            ];
+            let currentTestiIndex = 0;
+            const testiQuote = document.getElementById('testiQuote');
+            const testiAuthor = document.getElementById('testiAuthor');
+            const testiImg = document.getElementById('testiImg');
+
+            function updateTestimonial(index) {
+                testiQuote.textContent = testimonials[index].quote;
+                testiAuthor.textContent = testimonials[index].author;
+                testiImg.src = testimonials[index].img;
+            }
+
+            document.getElementById('nextTesti').addEventListener('click', function() {
+                currentTestiIndex = (currentTestiIndex + 1) % testimonials.length;
+                updateTestimonial(currentTestiIndex);
+            });
+
+            document.getElementById('prevTesti').addEventListener('click', function() {
+                currentTestiIndex = (currentTestiIndex - 1 + testimonials.length) % testimonials.length;
+                updateTestimonial(currentTestiIndex);
+            });
+        });
+    </script>
 </body>
 </html>

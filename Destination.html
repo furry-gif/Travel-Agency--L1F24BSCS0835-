@@ -40,7 +40,6 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
         }
 
         ul {
@@ -64,7 +63,6 @@
             text-transform: uppercase;
             border: 1px solid var(--primary-color);
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .section-title {
@@ -80,7 +78,7 @@
         /* --- NAVIGATION --- */
         nav {
             padding: 20px 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -93,6 +91,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -121,20 +120,20 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+            color: var(--heading-color);
         }
 
         /* --- SUBPAGE HERO SECTION --- */
         .hero-sub {
             height: 60vh;
             min-height: 450px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-             url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            margin-top: 70px; /* Offset for fixed navbar */
+            margin-top: 70px;
         }
 
         .hero-sub-content h1 {
@@ -175,17 +174,13 @@
             position: relative;
             overflow: hidden;
             height: 300px;
+            border-radius: 4px;
         }
 
         .dest-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .dest-card:hover img {
-            transform: scale(1.1);
         }
 
         .dest-card::after {
@@ -238,6 +233,7 @@
             width: 100%;
             max-width: 500px;
             height: auto;
+            border-radius: 4px;
         }
 
         .testi-content {
@@ -276,6 +272,15 @@
             cursor: pointer;
             color: var(--heading-color);
             font-size: 18px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+        }
+
+        .testi-nav i:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
         }
 
         /* --- SERVICES (BOTTOM) --- */
@@ -394,15 +399,36 @@
             color: var(--primary-color);
         }
 
-        /* Responsive Design */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 991px) {
-            .nav-links { display: none; }
             .menu-toggle { display: block; }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
             .dest-grid { grid-template-columns: repeat(2, 1fr); }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .testi-container { flex-direction: column; }
             .testi-img, .testi-content { width: 100%; position: static; }
-            .testi-content { padding: 30px; }
+            .testi-content { padding: 30px; margin-top: 20px; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -418,16 +444,16 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <a href="index.html" class="logo">Travelers</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="./Destination.html">Destination</a></li>
-                <li><a href="#">Pages</a></li> 
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
+            <a href="home.html" class="logo">Travelers</a>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Destination.html">Destination</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="discount.html">Discount</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
+            <div class="menu-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
@@ -437,7 +463,7 @@
     <header class="hero-sub">
         <div class="container hero-sub-content">
             <h1>DESTINATIONS</h1>
-            <p class="breadcrumb"><a href="index.html">Home</a> <span>&#8594;</span> Destinations</p>
+            <p class="breadcrumb"><a href="home.html">Home</a> <span>&#8594;</span> Destinations</p>
         </div>
     </header>
 
@@ -445,7 +471,6 @@
     <section class="destinations-section">
         <div class="container">
             <div class="dest-grid">
-                <!-- Dest 1 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini">
                     <div class="dest-info">
@@ -453,7 +478,6 @@
                         <h3 class="dest-name">Santorini, Greece</h3>
                     </div>
                 </div>
-                <!-- Dest 2 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rome">
                     <div class="dest-info">
@@ -461,7 +485,6 @@
                         <h3 class="dest-name">Rome, Italy</h3>
                     </div>
                 </div>
-                <!-- Dest 3 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mount Fuji">
                     <div class="dest-info">
@@ -469,7 +492,6 @@
                         <h3 class="dest-name">Mount Fuji, Japan</h3>
                     </div>
                 </div>
-                <!-- Dest 4 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dubai">
                     <div class="dest-info">
@@ -477,7 +499,6 @@
                         <h3 class="dest-name">Camels, Dubai</h3>
                     </div>
                 </div>
-                <!-- Dest 5 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="London">
                     <div class="dest-info">
@@ -485,7 +506,6 @@
                         <h3 class="dest-name">Elizabeth Tower, London</h3>
                     </div>
                 </div>
-                <!-- Dest 6 -->
                 <div class="dest-card">
                     <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Australia">
                     <div class="dest-info">
@@ -505,17 +525,16 @@
             </div>
             <div class="testi-container">
                 <div class="testi-img">
-                    <img src="https://images.unsplash.com/photo-1516483638261-f4085ee6e60b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traveler">
+                    <img id="testiImg" src="https://images.unsplash.com/photo-1516483638261-f4085ee6e60b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Traveler">
                 </div>
-                <div class="testi-content">
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus. Nemo maxime, veniam! Fugiat odio nam eveniet ipsum atque, corrupti porro"</p>
+                <div class="testi-content" id="testiContent">
+                    <p id="testiQuote">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique dolorem quisquam laudantium, incidunt id laborum, tempora aliquid labore minus. Nemo maxime, veniam! Fugiat odio nam eveniet ipsum atque, corrupti porro"</p>
                     <span class="testi-author">— James Martin, <span>Traveler</span></span>
-                    
                 </div>
             </div>
             <div class="testi-nav">
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-arrow-left" id="prevTesti"></i>
+                <i class="fas fa-arrow-right" id="nextTesti"></i>
             </div>
         </div>
     </section>
@@ -558,31 +577,31 @@
             <div class="footer-grid">
                 <div class="footer-widget">
                     <h3>About Travelers</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis minima minus odio!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa?</p>
                 </div>
                 <div class="footer-widget">
                     <h3>Navigations</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="home.html">Home</a></li>
                         <li><a href="Destination.html">Destination</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h3 style="visibility: hidden;">Navigations</h3>
                     <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Discounts</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="discount.html">Discounts</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
                     <h3>Subscribe Newsletter</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit minima minus odio.</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Enter Email">
+                        <input type="email" placeholder="Enter Email" required>
                         <button type="submit">Send</button>
                     </form>
                 </div>
@@ -599,5 +618,25 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const toggleIcon = mobileToggle.querySelector('i');
+
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-times');
+                } else {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
